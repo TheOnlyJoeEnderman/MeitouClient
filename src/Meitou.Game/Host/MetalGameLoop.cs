@@ -1346,6 +1346,10 @@ sealed class MetalGameLoop(GameHost host, Data.Gameplay.NewGameStart? start)
             TakeIntoBackpackChanged = on => host.Session.World.TakeIntoBackpack = on,
             TutorialsChanged = on => { if (host.Saves.Tutorials is { } t) t.Enabled = on; },
             ResetTutorials = () => host.Saves.Tutorials?.Reset(),
+            BlockedMusicChanged = host.Sound.ApplyBlockedMusic,
+            SkipMusic = host.Sound.SkipMusic,
+            BlockPlayingMusic = host.Sound.BlockPlayingMusic,
+            ClearBlockedMusic = host.Sound.ClearBlockedMusic,
             OffscreenChanged = () =>
             {
                 foreach (var population in host.Session.World.Systems.OfType<Meitou.Simulation.Population.PopulationSystem>())

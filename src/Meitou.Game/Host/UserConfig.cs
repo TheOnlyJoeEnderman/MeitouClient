@@ -604,6 +604,14 @@ sealed class UserConfig
     /// </summary>
     public bool? Tutorials { get; set; }
     /// <summary>
+    /// Blocked music (Advanced settings; Faithful off, Meitou on; docs/audio.md "Music"): the pieces in <see cref="BlockedMusic"/> are never picked.
+    /// </summary>
+    public bool BlockMusic { get; set; } = true;
+    /// <summary>
+    /// The music segments the player blocked (the Advanced page's Block this music), by Wwise id; played again once removed (Clear blocked music).
+    /// </summary>
+    public List<uint> BlockedMusic { get; set; } = [];
+    /// <summary>
     /// The original's `invert X` (default off) and `invert Y` (default on); Controls settings. Null until first used, then taken from the install's
     /// settings.cfg.
     /// </summary>

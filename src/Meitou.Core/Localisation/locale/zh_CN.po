@@ -5691,3 +5691,51 @@ msgstr "保存当前预设"
 
 msgid "Sort by"
 msgstr "排序方式"
+
+#. machine-translated
+msgid "No music is playing"
+msgstr "没有正在播放的音乐"
+
+#. machine-translated
+msgid "Blocked {1} piece(s) of music"
+msgstr "已屏蔽 {1} 段音乐"
+
+#. machine-translated
+msgid "Blocked music"
+msgstr "屏蔽的音乐"
+
+#. machine-translated
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
+msgstr "用“屏蔽此音乐”屏蔽的音乐永远不会被选中，会改为播放另一段。游戏中每段音乐都可能播放。"
+
+#. machine-translated
+msgid "Skip music"
+msgstr "跳过音乐"
+
+#. machine-translated
+msgid "Fades out the music playing now and starts new music at once."
+msgstr "淡出正在播放的音乐，并立即开始新的音乐。"
+
+#. machine-translated
+msgid "Skip"
+msgstr "跳过"
+
+#. machine-translated
+msgid "Block this music"
+msgstr "屏蔽此音乐"
+
+#. machine-translated
+msgid "Blocks the music playing now and skips to new music. A region's music plays up to three pieces at once; all of them are blocked."
+msgstr "屏蔽正在播放的音乐并跳到新的音乐。一个地区的音乐最多同时播放三段，全部都会被屏蔽。"
+
+#. machine-translated
+msgid "Clear blocked music"
+msgstr "清除屏蔽的音乐"
+
+#. machine-translated
+msgid "Every piece you blocked can play again."
+msgstr "你屏蔽的每段音乐都可以再次播放。"
+
+#. machine-translated
+msgid "Clear"
+msgstr "清除"

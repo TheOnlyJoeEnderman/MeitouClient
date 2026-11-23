@@ -4848,3 +4848,51 @@ msgstr "Guardar preajuste actual"
 
 msgid "Sort by"
 msgstr "Ordenar por"
+
+#. machine-translated
+msgid "No music is playing"
+msgstr "No suena música"
+
+#. machine-translated
+msgid "Blocked {1} piece(s) of music"
+msgstr "{1} pieza(s) de música bloqueada(s)"
+
+#. machine-translated
+msgid "Blocked music"
+msgstr "Música bloqueada"
+
+#. machine-translated
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
+msgstr "La música que bloqueaste con «Bloquear esta música» nunca se elige; suena otra pieza en su lugar. En el juego puede sonar cualquier pieza."
+
+#. machine-translated
+msgid "Skip music"
+msgstr "Saltar música"
+
+#. machine-translated
+msgid "Fades out the music playing now and starts new music at once."
+msgstr "Desvanece la música que suena y empieza música nueva al instante."
+
+#. machine-translated
+msgid "Skip"
+msgstr "Saltar"
+
+#. machine-translated
+msgid "Block this music"
+msgstr "Bloquear esta música"
+
+#. machine-translated
+msgid "Blocks the music playing now and skips to new music. A region's music plays up to three pieces at once; all of them are blocked."
+msgstr "Bloquea la música que suena y salta a música nueva. La música de una región suena con hasta tres piezas a la vez; se bloquean todas."
+
+#. machine-translated
+msgid "Clear blocked music"
+msgstr "Borrar música bloqueada"
+
+#. machine-translated
+msgid "Every piece you blocked can play again."
+msgstr "Todas las piezas que bloqueaste pueden volver a sonar."
+
+#. machine-translated
+msgid "Clear"
+msgstr "Borrar"

@@ -4846,3 +4846,51 @@ msgstr "現在のプリセットを保存"
 
 msgid "Sort by"
 msgstr "並べ替え"
+
+#. machine-translated
+msgid "No music is playing"
+msgstr "音楽は再生されていません"
+
+#. machine-translated
+msgid "Blocked {1} piece(s) of music"
+msgstr "{1} 曲をブロックしました"
+
+#. machine-translated
+msgid "Blocked music"
+msgstr "ブロックした音楽"
+
+#. machine-translated
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
+msgstr "「この音楽をブロック」でブロックした音楽は選ばれず、代わりに別の曲が流れます。ゲームではどの曲も流れます。"
+
+#. machine-translated
+msgid "Skip music"
+msgstr "音楽をスキップ"
+
+#. machine-translated
+msgid "Fades out the music playing now and starts new music at once."
+msgstr "再生中の音楽をフェードアウトし、すぐに新しい音楽を始めます。"
+
+#. machine-translated
+msgid "Skip"
+msgstr "スキップ"
+
+#. machine-translated
+msgid "Block this music"
+msgstr "この音楽をブロック"
+
+#. machine-translated
+msgid "Blocks the music playing now and skips to new music. A region's music plays up to three pieces at once; all of them are blocked."
+msgstr "再生中の音楽をブロックし、新しい音楽にスキップします。地域の音楽は最大3曲を同時に流し、そのすべてがブロックされます。"
+
+#. machine-translated
+msgid "Clear blocked music"
+msgstr "ブロックした音楽を解除"
+
+#. machine-translated
+msgid "Every piece you blocked can play again."
+msgstr "ブロックしたすべての曲が再び流れるようになります。"
+
+#. machine-translated
+msgid "Clear"
+msgstr "解除"

@@ -5287,3 +5287,51 @@ msgstr "Salvar predefinição atual"
 
 msgid "Sort by"
 msgstr "Ordenar por"
+
+#. machine-translated
+msgid "No music is playing"
+msgstr "Nenhuma música tocando"
+
+#. machine-translated
+msgid "Blocked {1} piece(s) of music"
+msgstr "{1} faixa(s) de música bloqueada(s)"
+
+#. machine-translated
+msgid "Blocked music"
+msgstr "Música bloqueada"
+
+#. machine-translated
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
+msgstr "A música bloqueada com \"Bloquear esta música\" nunca é escolhida; outra faixa toca no lugar dela. No jogo qualquer faixa pode tocar."
+
+#. machine-translated
+msgid "Skip music"
+msgstr "Pular música"
+
+#. machine-translated
+msgid "Fades out the music playing now and starts new music at once."
+msgstr "Esmaece a música que está tocando e começa uma música nova na hora."
+
+#. machine-translated
+msgid "Skip"
+msgstr "Pular"
+
+#. machine-translated
+msgid "Block this music"
+msgstr "Bloquear esta música"
+
+#. machine-translated
+msgid "Blocks the music playing now and skips to new music. A region's music plays up to three pieces at once; all of them are blocked."
+msgstr "Bloqueia a música que está tocando e pula para uma música nova. A música de uma região toca até três faixas ao mesmo tempo; todas são bloqueadas."
+
+#. machine-translated
+msgid "Clear blocked music"
+msgstr "Limpar música bloqueada"
+
+#. machine-translated
+msgid "Every piece you blocked can play again."
+msgstr "Todas as faixas que você bloqueou podem tocar de novo."
+
+#. machine-translated
+msgid "Clear"
+msgstr "Limpar"

@@ -4848,3 +4848,51 @@ msgstr "Salva il preset corrente"
 
 msgid "Sort by"
 msgstr "Ordina per"
+
+#. machine-translated
+msgid "No music is playing"
+msgstr "Nessuna musica in riproduzione"
+
+#. machine-translated
+msgid "Blocked {1} piece(s) of music"
+msgstr "{1} brano/i musicale/i bloccato/i"
+
+#. machine-translated
+msgid "Blocked music"
+msgstr "Musica bloccata"
+
+#. machine-translated
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
+msgstr "La musica bloccata con «Blocca questa musica» non viene mai scelta; al suo posto suona un altro brano. Nel gioco può suonare qualsiasi brano."
+
+#. machine-translated
+msgid "Skip music"
+msgstr "Salta musica"
+
+#. machine-translated
+msgid "Fades out the music playing now and starts new music at once."
+msgstr "Sfuma la musica in corso e avvia subito nuova musica."
+
+#. machine-translated
+msgid "Skip"
+msgstr "Salta"
+
+#. machine-translated
+msgid "Block this music"
+msgstr "Blocca questa musica"
+
+#. machine-translated
+msgid "Blocks the music playing now and skips to new music. A region's music plays up to three pieces at once; all of them are blocked."
+msgstr "Blocca la musica in corso e passa a nuova musica. La musica di una regione suona fino a tre brani insieme; vengono bloccati tutti."
+
+#. machine-translated
+msgid "Clear blocked music"
+msgstr "Cancella musica bloccata"
+
+#. machine-translated
+msgid "Every piece you blocked can play again."
+msgstr "Ogni brano bloccato può suonare di nuovo."
+
+#. machine-translated
+msgid "Clear"
+msgstr "Cancella"

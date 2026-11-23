@@ -480,6 +480,26 @@ sealed class SettingsMenu(PlayerInterface player, SettingsPanel values, InputBin
     public Action? ResetTutorials { get; init; }
 
     /// <summary>
+    /// The Blocked music switch changed (Advanced page).
+    /// </summary>
+    public Action? BlockedMusicChanged { get; init; }
+
+    /// <summary>
+    /// The Skip music button (Advanced page).
+    /// </summary>
+    public Action? SkipMusic { get; init; }
+
+    /// <summary>
+    /// The Block this music button (Advanced page).
+    /// </summary>
+    public Action? BlockPlayingMusic { get; init; }
+
+    /// <summary>
+    /// The Clear blocked music button (Advanced page).
+    /// </summary>
+    public Action? ClearBlockedMusic { get; init; }
+
+    /// <summary>
     /// The animals' pick-up switch changed (<see cref="UserConfig.AnimalsPickUp"/>).
     /// </summary>
     public Action<bool>? AnimalsPickUpChanged { get; init; }

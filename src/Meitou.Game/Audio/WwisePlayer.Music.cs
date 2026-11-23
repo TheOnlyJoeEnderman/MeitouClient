@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+using System.Collections.Frozen;
 using Meitou.Data.Audio;
 
 namespace Meitou.Game.Audio;
@@ -19,6 +21,31 @@ public sealed partial class WwisePlayer
     /// The sequence step positions per playlist group (by playlist and item id), kept across plays.
     /// </summary>
     readonly Dictionary<(uint Playlist, uint Item), int> _musicSteps = [];
+    /// <summary>
+    /// How many instances of each music segment with sound (a silence aside) play now, by segment id; written by the audio thread.
+    /// </summary>
+    readonly ConcurrentDictionary<uint, int> _playingMusic = [];
+
+    /// <summary>
+    /// Meitou's blocked music (docs/audio.md "Music", the Advanced page's Blocked music): segments no playlist plays; a random pick takes another
+    /// in their place. Empty plays every segment, as the game. Set from any thread.
+    /// </summary>
+    public IReadOnlySet<uint> BlockedMusic { get; set; } = FrozenSet<uint>.Empty;
+
+    /// <summary>
+    /// The music segments with sound playing now (one per layer of the biome music), by id; read from any thread.
+    /// </summary>
+    public uint[] PlayingMusic => [.. _playingMusic.Where(p => p.Value > 0).Select(p => p.Key)];
+
+    /// <summary>
+    /// How many music segments with sound have started so far (a silence aside); read from any thread.
+    /// </summary>
+    public int MusicStarts => Volatile.Read(ref _musicStarts);
+
+    /// <summary>
+    /// <see cref="MusicStarts"/>; written by the audio thread.
+    /// </summary>
+    int _musicStarts;
 
     /// <summary>
     /// A music node that plays on a timeline: when its current segment ends, and whether it should stop after that one.
@@ -54,6 +81,11 @@ public sealed partial class WwisePlayer
     /// </summary>
     sealed class MusicSegmentInstance(WwisePlayer player, WwiseMusicSegment node, Instance? parent) : MusicInstance(player, node, parent)
     {
+        /// <summary>
+        /// Counted in <see cref="_playingMusic"/>: it has sound and has not ended.
+        /// </summary>
+        bool _counted;
+
         /// <inheritdoc/>
         public override double CurrentExit => StartTime + Math.Max(1, node.ExitCue - node.EntryCue) / 1000;
 
@@ -72,7 +104,25 @@ public sealed partial class WwisePlayer
                     sound.Start();
                 }
             }
-            if (_children.Count == 0) End(); // a silence: the playlist keeps the time
+            if (_children.Count == 0)
+            {
+                End(); // a silence: the playlist keeps the time
+                return;
+            }
+
+            _counted = true;
+            _player._playingMusic.AddOrUpdate(node.Id, 1, (_, n) => n + 1);
+            Interlocked.Increment(ref _player._musicStarts);
+        }
+
+        public override void End()
+        {
+            if (_counted)
+            {
+                _counted = false;
+                _player._playingMusic.AddOrUpdate(node.Id, 0, (_, n) => n - 1);
+            }
+            base.End();
         }
     }
 
@@ -147,6 +197,7 @@ public sealed partial class WwisePlayer
             int loops = Math.Max(1, (int)item.LoopCount);
             if (!item.IsGroup)
             {
+                if (_player.BlockedMusic.Contains(item.SegmentId)) yield break;
                 for (int n = 0; forever || n < loops; n++) yield return item.SegmentId;
                 yield break;
             }
@@ -181,11 +232,11 @@ public sealed partial class WwisePlayer
                     _player._musicSteps[key] = step + 1;
                     return [children[step % children.Length]];
                 case 3:
-                    return [Pick(group, children)];
+                    return Pick(group, children) is { } one ? [one] : [];
                 default:
                     if (group.Shuffle)
                     {
-                        var left = children.ToList();
+                        var left = children.Where(Open).ToList();
                         var order = new List<WwisePlaylistItem>();
                         while (left.Count > 0)
                         {
@@ -195,7 +246,7 @@ public sealed partial class WwisePlayer
                         }
                         return order;
                     }
-                    return [.. children.Select(_ => Pick(group, children))];
+                    return [.. children.Select(_ => Pick(group, children)).OfType<WwisePlaylistItem>()];
             }
         }
 
@@ -215,19 +266,28 @@ public sealed partial class WwisePlayer
         }
 
         /// <summary>
-        /// A weighted pick among <paramref name="candidates"/> that skips the group's last <c>avoid repeat</c> picks (all of them when none is left).
+        /// A weighted pick among <paramref name="candidates"/> not blocked (<see cref="Open"/>) that skips the group's last <c>avoid repeat</c> picks
+        /// (all of them when none is left); null when every candidate is blocked.
         /// </summary>
-        WwisePlaylistItem Pick(WwisePlaylistItem group, IReadOnlyList<WwisePlaylistItem> candidates)
+        WwisePlaylistItem? Pick(WwisePlaylistItem group, IReadOnlyList<WwisePlaylistItem> candidates)
         {
             var key = (node.Id, group.ItemId);
             if (!_player._musicHistory.TryGetValue(key, out var recent)) _player._musicHistory[key] = recent = [];
-            var allowed = candidates.Where(c => !recent.Contains(c.ItemId)).ToList();
-            if (allowed.Count == 0) allowed = [.. candidates];
+            var open = candidates.Where(Open).ToList();
+            if (open.Count == 0) return null;
+
+            var allowed = open.Where(c => !recent.Contains(c.ItemId)).ToList();
+            if (allowed.Count == 0) allowed = open;
             var pick = allowed[WeightedIndex(group, allowed)];
             recent.Add(pick.ItemId);
             while (recent.Count > Math.Min((int)group.AvoidRepeatCount, candidates.Count - 1)) recent.RemoveAt(0);
             return pick;
         }
+
+        /// <summary>
+        /// Whether an item may be picked: a group, or a segment not in <see cref="BlockedMusic"/>.
+        /// </summary>
+        bool Open(WwisePlaylistItem item) => item.IsGroup || !_player.BlockedMusic.Contains(item.SegmentId);
     }
 
     /// <summary>

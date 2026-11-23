@@ -4846,3 +4846,51 @@ msgstr "현재 프리셋 저장"
 
 msgid "Sort by"
 msgstr "정렬 기준"
+
+#. machine-translated
+msgid "No music is playing"
+msgstr "재생 중인 음악이 없습니다"
+
+#. machine-translated
+msgid "Blocked {1} piece(s) of music"
+msgstr "음악 {1}곡을 차단했습니다"
+
+#. machine-translated
+msgid "Blocked music"
+msgstr "차단한 음악"
+
+#. machine-translated
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
+msgstr "'이 음악 차단'으로 차단한 음악은 선택되지 않으며 대신 다른 곡이 재생됩니다. 게임에서는 모든 곡이 재생될 수 있습니다."
+
+#. machine-translated
+msgid "Skip music"
+msgstr "음악 건너뛰기"
+
+#. machine-translated
+msgid "Fades out the music playing now and starts new music at once."
+msgstr "재생 중인 음악을 페이드아웃하고 바로 새 음악을 시작합니다."
+
+#. machine-translated
+msgid "Skip"
+msgstr "건너뛰기"
+
+#. machine-translated
+msgid "Block this music"
+msgstr "이 음악 차단"
+
+#. machine-translated
+msgid "Blocks the music playing now and skips to new music. A region's music plays up to three pieces at once; all of them are blocked."
+msgstr "재생 중인 음악을 차단하고 새 음악으로 건너뜁니다. 지역 음악은 최대 세 곡을 동시에 재생하며, 모두 차단됩니다."
+
+#. machine-translated
+msgid "Clear blocked music"
+msgstr "차단한 음악 해제"
+
+#. machine-translated
+msgid "Every piece you blocked can play again."
+msgstr "차단한 모든 곡이 다시 재생될 수 있습니다."
+
+#. machine-translated
+msgid "Clear"
+msgstr "해제"

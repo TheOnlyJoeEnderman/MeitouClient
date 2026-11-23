@@ -730,8 +730,27 @@ sealed class GamePages(SettingsMenu menu)
         AddWorldRows(result);
         AddOptionalRows(result);
         AddSceneRows(result);
+        AddMusicRows(result);
         result.Insert(0, menu.PageSidesEntry(result, "All gameplay changes", "Every change on this page as the game plays, or every Meitou change.",
             "gameplay change"));
+    }
+
+    /// <summary>
+    /// The music rows: the Blocked music switch and the Skip, Block and Clear buttons (docs/audio.md "Music").
+    /// </summary>
+    void AddMusicRows(List<SettingsMenu.Entry> result)
+    {
+        result.Add(new("Blocked music",
+            "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play.",
+            Toggle: new("Blocked music", () => menu.Config.BlockMusic,
+                v => { menu.Config.BlockMusic = v; menu.BlockedMusicChanged?.Invoke(); }, Remaster: true, OnOff: true)));
+        result.Add(new("Skip music", "Fades out the music playing now and starts new music at once.", Run: () => menu.SkipMusic?.Invoke(),
+            RunLabel: "Skip"));
+        result.Add(new("Block this music",
+            "Blocks the music playing now and skips to new music. A region's music plays up to three pieces at once; all of them are blocked.",
+            Run: () => menu.BlockPlayingMusic?.Invoke(), RunLabel: "Block"));
+        result.Add(new("Clear blocked music", "Every piece you blocked can play again.", Run: () => menu.ClearBlockedMusic?.Invoke(),
+            RunLabel: "Clear"));
     }
 
     /// <summary>

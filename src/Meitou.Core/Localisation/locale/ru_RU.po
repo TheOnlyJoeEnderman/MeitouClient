@@ -4850,3 +4850,51 @@ msgstr "Сохранить текущий набор"
 
 msgid "Sort by"
 msgstr "Сортировать по"
+
+#. machine-translated
+msgid "No music is playing"
+msgstr "Музыка не играет"
+
+#. machine-translated
+msgid "Blocked {1} piece(s) of music"
+msgstr "Заблокировано музыкальных фрагментов: {1}"
+
+#. machine-translated
+msgid "Blocked music"
+msgstr "Заблокированная музыка"
+
+#. machine-translated
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
+msgstr "Музыка, заблокированная кнопкой «Заблокировать эту музыку», никогда не выбирается; вместо неё играет другой фрагмент. В игре может играть любой фрагмент."
+
+#. machine-translated
+msgid "Skip music"
+msgstr "Пропустить музыку"
+
+#. machine-translated
+msgid "Fades out the music playing now and starts new music at once."
+msgstr "Плавно затухает текущая музыка, и сразу начинается новая."
+
+#. machine-translated
+msgid "Skip"
+msgstr "Пропустить"
+
+#. machine-translated
+msgid "Block this music"
+msgstr "Заблокировать эту музыку"
+
+#. machine-translated
+msgid "Blocks the music playing now and skips to new music. A region's music plays up to three pieces at once; all of them are blocked."
+msgstr "Блокирует текущую музыку и переключает на новую. Музыка региона играет до трёх фрагментов одновременно; блокируются все."
+
+#. machine-translated
+msgid "Clear blocked music"
+msgstr "Сбросить заблокированную музыку"
+
+#. machine-translated
+msgid "Every piece you blocked can play again."
+msgstr "Все заблокированные фрагменты снова могут играть."
+
+#. machine-translated
+msgid "Clear"
+msgstr "Сбросить"

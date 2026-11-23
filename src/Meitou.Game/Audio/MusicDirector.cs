@@ -69,6 +69,28 @@ public sealed class MusicDirector
     /// Whether no biome step has run yet (the first drops the main theme's bank).
     /// </summary>
     bool _firstChange = true;
+    /// <summary>
+    /// Plays <see cref="Skip"/> may still post: one play can pick a silence on every layer, so while no music with sound has started since the
+    /// skip, <see cref="Update"/> posts again each <see cref="SkipRetrySeconds"/>, this many times at most.
+    /// </summary>
+    int _skipTries;
+    /// <summary>
+    /// <see cref="WwisePlayer.MusicStarts"/> when the skip was asked for.
+    /// </summary>
+    int _skipStarts;
+    /// <summary>
+    /// The real time (of <see cref="_clock"/>) of the skip's next check.
+    /// </summary>
+    double _skipCheckAt;
+
+    /// <summary>
+    /// The most plays <see cref="Skip"/> posts.
+    /// </summary>
+    const int SkipTries = 8;
+    /// <summary>
+    /// Real seconds between a skip's plays.
+    /// </summary>
+    const double SkipRetrySeconds = 1;
 
     /// <summary>
     /// The music of the region the camera is over, null for none.
@@ -180,8 +202,43 @@ public sealed class MusicDirector
             // Moves on whether or not anything is posted; nothing checks whether music still plays, and no Stop is ever posted.
             if (_remembered is not null && Volume > 0) _player.Post(_remembered, AudioSystem.MusicObject);
         }
+        RetrySkip(now);
         if (_remembered is not null) _lastCurrent[BankOf(Biome!)] = now;
         if (!otherLoadPending) UnloadStale(now);
+    }
+
+    /// <summary>
+    /// Meitou's skip (the Advanced page's Skip music; the game has none): the biome's music fades out by its bank's own <c>Music_&lt;Name&gt;_Stop</c>
+    /// (6 s) and <c>_Play</c> is posted at once, every layer making a new pick; the timer's interval starts again. A play that brought only silences
+    /// is posted again (<see cref="RetrySkip"/>). Nothing on the title screen, with no biome music remembered or with the volume at 0.
+    /// </summary>
+    public void Skip()
+    {
+        if (TitleScreen || _remembered is null || Volume <= 0) return;
+
+        double now = _clock();
+        _player.Post($"Music_{Biome}_Stop", AudioSystem.MusicObject);
+        _player.Post(_remembered, AudioSystem.MusicObject);
+        _deadline = now + Interval() * (0.8 + 0.6 * _random.NextDouble());
+        (_skipTries, _skipStarts, _skipCheckAt) = (SkipTries - 1, _player.MusicStarts, now + SkipRetrySeconds);
+    }
+
+    /// <summary>
+    /// A skip's check: once music with sound has started since the skip it is done, else the play is posted again while tries are left.
+    /// </summary>
+    void RetrySkip(double now)
+    {
+        if (_skipTries <= 0 || now < _skipCheckAt) return;
+
+        if (_player.MusicStarts != _skipStarts || _remembered is null || Volume <= 0)
+        {
+            _skipTries = 0;
+            return;
+        }
+
+        _skipTries--;
+        _skipCheckAt = now + SkipRetrySeconds;
+        _player.Post(_remembered, AudioSystem.MusicObject);
     }
 
     /// <summary>

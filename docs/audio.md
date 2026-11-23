@@ -508,6 +508,13 @@ host running without sound.
   not current for 60 s is unloaded. `StartMainTheme` (loads `MT_Music_Bank`, posts `Boot_Up_Game`, pauses the timer) and
   `OnCreateOrLoadGame` (posts `Create_or_Load_Game`, resumes it) are for a host with a title screen (the game, see below); the viewer has none and does not call
   them. `Music frequency` (minutes, default 5) and `Music volume` (default 0.5, sent as `User_Volume_Music` × 100) come from `AudioSettings`.
+- **Skip and blocked music** (Meitou; the game has neither): the Advanced page's *Skip music* posts the biome's own `Music_<Name>_Stop` (6 s
+  fade), posts `_Play` at once so every layer picks anew, and restarts the timer's interval (`MusicDirector.Skip`); since one play can pick
+  a silence on every layer, `_Play` is posted again each second, up to 8 plays, until a segment with sound starts
+  (`WwisePlayer.MusicStarts`). *Block this music* adds the
+  segments with sound playing now (`WwisePlayer.PlayingMusic`, one per layer) to `UserConfig.BlockedMusic`; while *Blocked music* is on
+  (`UserConfig.BlockMusic`, Meitou side) `WwisePlayer.BlockedMusic` holds them: a playlist never plays a blocked segment, and a random pick
+  chooses among the unblocked items (a group whose items are all blocked plays nothing for that pass).
 
 ### Volume curves (Observed)
 

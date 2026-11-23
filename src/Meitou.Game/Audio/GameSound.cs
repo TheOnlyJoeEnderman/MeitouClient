@@ -1,5 +1,7 @@
-﻿using System.Numerics;
+﻿using System.Collections.Frozen;
+using System.Numerics;
 using Meitou.Data;
+using Meitou.Localisation;
 using Meitou.Simulation;
 
 namespace Meitou.Game.Audio;
@@ -107,6 +109,7 @@ sealed class GameSound(GameHost host)
             ? $"audio     {made.DeviceName}, ambience and music from the Wwise banks{GainText()} (--no-audio turns it off)"
             : $"audio     off: {error}");
         if (Audio is not null && host.Player is not null && host.Player.TitleOpen) Audio.Music.StartMainTheme();
+        ApplyBlockedMusic();
         Ui.Attach(Audio);
     }
 
@@ -152,6 +155,53 @@ sealed class GameSound(GameHost host)
     internal void AudioSettingsChanged()
     {
         if (Audio is not null && host.Config.Audio is { } settings) Audio.Apply(settings);
+    }
+
+    /// <summary>
+    /// Hands the blocked music (<see cref="UserConfig.BlockedMusic"/>) to the player while <see cref="UserConfig.BlockMusic"/> is on; nothing is
+    /// blocked while it is off.
+    /// </summary>
+    internal void ApplyBlockedMusic()
+    {
+        if (Audio is null) return;
+
+        Audio.Player.BlockedMusic = host.Config.BlockMusic ? host.Config.BlockedMusic.ToFrozenSet() : FrozenSet<uint>.Empty;
+    }
+
+    /// <summary>
+    /// The Advanced page's Skip music: the biome music fades out and new music starts (<see cref="MusicDirector.Skip"/>).
+    /// </summary>
+    internal void SkipMusic() => Audio?.Music.Skip();
+
+    /// <summary>
+    /// The Advanced page's Block this music: every piece playing now (one per layer) is blocked, saved, and skipped; a notice says what was done.
+    /// </summary>
+    internal void BlockPlayingMusic()
+    {
+        if (Audio is null) return;
+
+        var playing = Audio.Player.PlayingMusic;
+        if (playing.Length == 0)
+        {
+            host.Player.Notice(Loc.Tr("No music is playing"), true);
+            return;
+        }
+
+        host.Config.BlockedMusic = [.. host.Config.BlockedMusic.Union(playing)];
+        host.Config.Save();
+        ApplyBlockedMusic();
+        SkipMusic();
+        host.Player.Notice(Loc.Tr("Blocked {1} piece(s) of music", playing.Length), false);
+    }
+
+    /// <summary>
+    /// The Advanced page's Clear blocked music: every blocked piece may play again.
+    /// </summary>
+    internal void ClearBlockedMusic()
+    {
+        host.Config.BlockedMusic = [];
+        host.Config.Save();
+        ApplyBlockedMusic();
     }
 
     /// <summary>

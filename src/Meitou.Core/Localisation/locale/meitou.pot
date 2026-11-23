@@ -625,6 +625,22 @@ msgstr ""
 msgid "Blend more ACES into the hybrid tone mapping curve."
 msgstr ""
 
+#: src/Meitou.Game/Settings/GamePages.cs
+msgid "Block this music"
+msgstr ""
+
+#: src/Meitou.Game/Settings/GamePages.cs
+msgid "Blocked music"
+msgstr ""
+
+#: src/Meitou.Game/Audio/GameSound.cs
+msgid "Blocked {1} piece(s) of music"
+msgstr ""
+
+#: src/Meitou.Game/Settings/GamePages.cs
+msgid "Blocks the music playing now and skips to new music. A region's music plays up to three pieces at once; all of them are blocked."
+msgstr ""
+
 #: src/Meitou.Game/PlayerInterface.Ui.cs
 msgid "Blood --"
 msgstr ""
@@ -923,6 +939,14 @@ msgstr ""
 
 #: src/Meitou.Game/Settings/SettingHints.cs
 msgid "Choose which parts of the scene appear in reflections."
+msgstr ""
+
+#: src/Meitou.Game/Settings/GamePages.cs
+msgid "Clear"
+msgstr ""
+
+#: src/Meitou.Game/Settings/GamePages.cs
+msgid "Clear blocked music"
 msgstr ""
 
 #: src/Meitou.Game/Settings/GamePages.cs
@@ -1414,6 +1438,10 @@ msgid "Every graphics setting back to the game's defaults, also those only in th
 msgstr ""
 
 #: src/Meitou.Game/Settings/GamePages.cs
+msgid "Every piece you blocked can play again."
+msgstr ""
+
+#: src/Meitou.Game/Settings/GamePages.cs
 msgid "Every tutorial can show again, the ones already seen included."
 msgstr ""
 
@@ -1471,6 +1499,10 @@ msgstr ""
 
 #: src/Meitou.Game/Settings/SettingHints.cs
 msgid "Fade surface bumps where the sun only grazes, so the ground does not break into bright and black patches."
+msgstr ""
+
+#: src/Meitou.Game/Settings/GamePages.cs
+msgid "Fades out the music playing now and starts new music at once."
 msgstr ""
 
 #: launcher/Meitou.Launcher/GraphicsPage.cs src/Meitou.Game/Rendering/Frame/Enhancements.cs src/Meitou.Game/Settings/GamePages.cs src/Meitou.Game/Settings/SettingsCanvas.cs src/Meitou.Game/SettingsMenu.cs
@@ -3058,6 +3090,10 @@ msgstr ""
 msgid "Music frequency"
 msgstr ""
 
+#: src/Meitou.Game/Settings/GamePages.cs
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
+msgstr ""
+
 #: launcher/Meitou.Launcher/GraphicsPage.cs src/Meitou.Game/Settings/PresetNamingDialog.cs
 msgid "My look"
 msgstr ""
@@ -3195,6 +3231,10 @@ msgstr ""
 
 #: launcher/Meitou.Launcher/MainWindow.axaml.cs
 msgid "No mods match the search."
+msgstr ""
+
+#: src/Meitou.Game/Audio/GameSound.cs
+msgid "No music is playing"
 msgstr ""
 
 #: launcher/Meitou.Launcher/MainWindow.axaml.cs
@@ -4355,6 +4395,14 @@ msgstr ""
 
 #: src/Meitou.Game/Settings/SettingHints.cs
 msgid "Skin's oily sheen, a soft bright edge, and light through ears and fingers."
+msgstr ""
+
+#: src/Meitou.Game/Settings/GamePages.cs
+msgid "Skip"
+msgstr ""
+
+#: src/Meitou.Game/Settings/GamePages.cs
+msgid "Skip music"
 msgstr ""
 
 #: launcher/Meitou.Launcher/MainWindow.axaml.cs

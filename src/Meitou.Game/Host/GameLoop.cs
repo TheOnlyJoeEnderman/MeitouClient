@@ -507,6 +507,10 @@ sealed class GameLoop(GameHost host)
             CameraChanged = () => host.Config.ApplyCamera(host.Session.Camera.Settings),
             TutorialsChanged = on => { if (host.Saves.Tutorials is { } t) t.Enabled = on; },
             ResetTutorials = () => host.Saves.Tutorials?.Reset(),
+            BlockedMusicChanged = host.Sound.ApplyBlockedMusic,
+            SkipMusic = host.Sound.SkipMusic,
+            BlockPlayingMusic = host.Sound.BlockPlayingMusic,
+            ClearBlockedMusic = host.Sound.ClearBlockedMusic,
             // The settings that reach into the running world's systems.
             AttackSlotsChanged = slots => EachSystem<Simulation.Combat.CombatSystem>(combat => combat.UseAttackSlots(slots)),
             LateDefencesChanged = on => EachSystem<Simulation.Combat.CombatSystem>(combat => combat.LateDefences = on),
