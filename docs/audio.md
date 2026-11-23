@@ -508,13 +508,27 @@ host running without sound.
   not current for 60 s is unloaded. `StartMainTheme` (loads `MT_Music_Bank`, posts `Boot_Up_Game`, pauses the timer) and
   `OnCreateOrLoadGame` (posts `Create_or_Load_Game`, resumes it) are for a host with a title screen (the game, see below); the viewer has none and does not call
   them. `Music frequency` (minutes, default 5) and `Music volume` (default 0.5, sent as `User_Volume_Music` × 100) come from `AudioSettings`.
-- **Skip and blocked music** (Meitou; the game has neither): the Advanced page's *Skip music* posts the biome's own `Music_<Name>_Stop` (6 s
-  fade), posts `_Play` at once so every layer picks anew, and restarts the timer's interval (`MusicDirector.Skip`); since one play can pick
-  a silence on every layer, `_Play` is posted again each second, up to 8 plays, until a segment with sound starts
-  (`WwisePlayer.MusicStarts`). *Block this music* adds the
-  segments with sound playing now (`WwisePlayer.PlayingMusic`, one per layer) to `UserConfig.BlockedMusic`; while *Blocked music* is on
-  (`UserConfig.BlockMusic`, Meitou side) `WwisePlayer.BlockedMusic` holds them: a playlist never plays a blocked segment, and a random pick
-  chooses among the unblocked items (a group whose items are all blocked plays nothing for that pass).
+
+### Skip and blocked music
+
+Meitou's own (the game has neither): four rows at the end of the Advanced page (`GamePages.AddMusicRows`), so a piece the player dislikes
+need not keep them from leaving the music on. A biome's music is three layers playing at once, each a random pick of one piece or a
+silence per play ([wwise-bnk.md Music](formats/wwise-bnk.md#music)), so "the music playing now" is up to three segments.
+- **Skip music** (`MusicDirector.Skip`): posts the biome's own `Music_<Name>_Stop` (6 s fade), then `_Play` at once, so every layer picks
+  anew, and restarts the timer's interval. One play can pick a silence on every layer, so `_Play` is posted again each second, up to 8
+  plays, until a segment with sound starts (`WwisePlayer.MusicStarts`). Nothing happens on the title screen, outside a music
+  biome or at music volume 0.
+- **Block this music** (`GameSound.BlockPlayingMusic`): adds every segment with sound playing now (`WwisePlayer.PlayingMusic`, one per
+  layer) to `blockedMusic`, saves, and skips; the notice "Blocked N piece(s) of music", or "No music is playing" (nothing added) during a
+  silence.
+- **Blocked music** (switch, `blockMusic`; Faithful off, Meitou on): while on, `WwisePlayer.BlockedMusic` holds the blocked segments. A
+  playlist never plays one: a random pick chooses among the unblocked items (a group whose items are all blocked plays nothing for that
+  pass) and a sequence skips them. Off, every piece can play again; the list is kept.
+- **Clear blocked music**: empties `blockedMusic`.
+
+`meitou.user.json` keeps them as `blockMusic` (bool, default true) and `blockedMusic` (the segments' Wwise ids, numbers; default empty).
+An id is the segment's id in its bank, so a list carries over to another install with the same banks; an id no loaded bank holds blocks
+nothing.
 
 ### Volume curves (Observed)
 

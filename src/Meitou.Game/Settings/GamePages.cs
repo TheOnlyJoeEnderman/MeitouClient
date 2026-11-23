@@ -736,7 +736,7 @@ sealed class GamePages(SettingsMenu menu)
     }
 
     /// <summary>
-    /// The music rows: the Blocked music switch and the Skip, Block and Clear buttons (docs/audio.md "Music").
+    /// The music rows: the Blocked music switch and the Skip, Block and Clear buttons (docs/audio.md "Skip and blocked music").
     /// </summary>
     void AddMusicRows(List<SettingsMenu.Entry> result)
     {

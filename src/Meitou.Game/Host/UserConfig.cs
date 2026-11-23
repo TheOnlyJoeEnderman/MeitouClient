@@ -604,7 +604,8 @@ sealed class UserConfig
     /// </summary>
     public bool? Tutorials { get; set; }
     /// <summary>
-    /// Blocked music (Advanced settings; Faithful off, Meitou on; docs/audio.md "Music"): the pieces in <see cref="BlockedMusic"/> are never picked.
+    /// Blocked music (Advanced settings; Faithful off, Meitou on; docs/audio.md "Skip and blocked music"): the pieces in
+    /// <see cref="BlockedMusic"/> are never picked.
     /// </summary>
     public bool BlockMusic { get; set; } = true;
     /// <summary>

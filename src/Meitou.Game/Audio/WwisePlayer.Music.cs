@@ -27,8 +27,8 @@ public sealed partial class WwisePlayer
     readonly ConcurrentDictionary<uint, int> _playingMusic = [];
 
     /// <summary>
-    /// Meitou's blocked music (docs/audio.md "Music", the Advanced page's Blocked music): segments no playlist plays; a random pick takes another
-    /// in their place. Empty plays every segment, as the game. Set from any thread.
+    /// Meitou's blocked music (docs/audio.md "Skip and blocked music", the Advanced page's Blocked music): segments no playlist plays; a random
+    /// pick takes another in their place. Empty plays every segment, as the game. Set from any thread.
     /// </summary>
     public IReadOnlySet<uint> BlockedMusic { get; set; } = FrozenSet<uint>.Empty;
 
