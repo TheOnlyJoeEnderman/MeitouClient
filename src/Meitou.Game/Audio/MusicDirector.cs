@@ -208,19 +208,32 @@ public sealed class MusicDirector
     }
 
     /// <summary>
-    /// Meitou's skip (the Advanced page's Skip music; the game has none): the biome's music fades out by its bank's own <c>Music_&lt;Name&gt;_Stop</c>
-    /// (6 s) and <c>_Play</c> is posted at once, every layer making a new pick; the timer's interval starts again. A play that brought only silences
-    /// is posted again (<see cref="RetrySkip"/>). Nothing on the title screen, with no biome music remembered or with the volume at 0.
+    /// Meitou's skip (the Advanced page's Skip music; the game has none): the biome music playing fades out by each loaded bank's own
+    /// <c>Music_&lt;Name&gt;_Stop</c> (6 s), so also one a region left behind (the game never stops music: a biome change or a region without music
+    /// leaves it playing). The current biome's <c>_Play</c> is then posted at once, every layer making a new pick, and the timer's interval starts
+    /// again; a play that brought only silences is posted again (<see cref="RetrySkip"/>). With no biome music remembered (a region without music,
+    /// a bank still loading) or the volume at 0 the music only stops. Nothing on the title screen.
     /// </summary>
     public void Skip()
     {
-        if (TitleScreen || _remembered is null || Volume <= 0) return;
+        if (TitleScreen) return;
+
+        StopBiomeMusic();
+        if (_remembered is null || Volume <= 0) return;
 
         double now = _clock();
-        _player.Post($"Music_{Biome}_Stop", AudioSystem.MusicObject);
         _player.Post(_remembered, AudioSystem.MusicObject);
         _deadline = now + Interval() * (0.8 + 0.6 * _random.NextDouble());
         (_skipTries, _skipStarts, _skipCheckAt) = (SkipTries - 1, _player.MusicStarts, now + SkipRetrySeconds);
+    }
+
+    /// <summary>
+    /// Posts <c>Music_&lt;Name&gt;_Stop</c> of every biome whose music bank is loaded: whatever biome music plays fades out.
+    /// </summary>
+    void StopBiomeMusic()
+    {
+        foreach (string name in Names)
+            if (_player.IsBankLoaded(BankOf(name))) _player.Post($"Music_{name}_Stop", AudioSystem.MusicObject);
     }
 
     /// <summary>

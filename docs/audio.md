@@ -514,10 +514,11 @@ host running without sound.
 Meitou's own (the game has neither): the Blocked music switch at the end of the Advanced page, with the three buttons folded under it
 (`GamePages.AddMusicRows`, `FeatureGrouping`), so a piece the player dislikes need not keep them from leaving the music on. A biome's music is three layers playing at once, each a random pick of one piece or a
 silence per play ([wwise-bnk.md Music](formats/wwise-bnk.md#music)), so "the music playing now" is up to three segments.
-- **Skip music** (`MusicDirector.Skip`): posts the biome's own `Music_<Name>_Stop` (6 s fade), then `_Play` at once, so every layer picks
-  anew, and restarts the timer's interval. One play can pick a silence on every layer, so `_Play` is posted again each second, up to 8
-  plays, until a segment with sound starts (`WwisePlayer.MusicStarts`). Nothing happens on the title screen, outside a music
-  biome or at music volume 0.
+- **Skip music** (`MusicDirector.Skip`): posts `Music_<Name>_Stop` (6 s fade) of every biome whose music bank is loaded, since the game
+  never stops music: a piece started in one region plays on after the camera enters another region or one without music. Then the current
+  biome's `_Play` at once, so every layer picks anew, and the timer's interval restarts. One play can pick a silence on every layer, so `_Play`
+  is posted again each second, up to 8 plays, until a segment with sound starts (`WwisePlayer.MusicStarts`). In a region without music, with
+  its bank still loading or at music volume 0 the music only stops; on the title screen nothing happens.
 - **Block this music** (`GameSound.BlockPlayingMusic`): adds every segment with sound playing now (`WwisePlayer.PlayingMusic`, one per
   layer) to `blockedMusic`, saves, and skips; the notice "Blocked N piece(s) of music", or "No music is playing" (nothing added) during a
   silence.
