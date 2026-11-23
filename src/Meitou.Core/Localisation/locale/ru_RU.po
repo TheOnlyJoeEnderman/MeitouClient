@@ -4864,8 +4864,8 @@ msgid "Blocked music"
 msgstr "Заблокированная музыка"
 
 #. machine-translated
-msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
-msgstr "Музыка, заблокированная кнопкой «Заблокировать эту музыку», никогда не выбирается; вместо неё играет другой фрагмент. В игре может играть любой фрагмент."
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. Open it to skip or block the music playing now. In the game every piece can play."
+msgstr "Музыка, заблокированная кнопкой «Заблокировать эту музыку», никогда не выбирается; вместо неё играет другой фрагмент. Раскройте, чтобы пропустить или заблокировать играющую сейчас музыку. В игре может играть любой фрагмент."
 
 #. machine-translated
 msgid "Skip music"

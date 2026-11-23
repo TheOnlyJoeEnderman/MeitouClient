@@ -3,8 +3,9 @@ using Meitou.Game.Rendering.Frame;
 namespace Meitou.Game.Settings;
 
 /// <summary>
-/// The Graphics tabs (and Advanced's Squad XP) as features (docs/native-ui.md "Settings"): each feature is one header row (its switch, or a title when it has none) with its
-/// own settings folded under it, closed until opened. Settings in no group stay rows of their own.
+/// The Graphics tabs (and Advanced's Squad XP and Blocked music) as features (docs/native-ui.md "Settings"): each feature is one header row
+/// (its switch, or a title when it has none) with its own settings folded under it, closed until opened. Settings in no group stay rows of
+/// their own.
 /// </summary>
 sealed class FeatureGrouping(SettingsMenu menu)
 {
@@ -108,8 +109,9 @@ sealed class FeatureGrouping(SettingsMenu menu)
         new(WorldFrame.FilmGrainSwitch, WorldFrame.FilmGrainSwitch, [WorldFrame.GrainStrengthSlider]),
         new("Heat haze", "Heat haze", ["Heat haze strength (1 = game)"]),
 
-        // Advanced: each skill's own multiplier under Squad XP
+        // Advanced: each skill's own multiplier under Squad XP; the music buttons under Blocked music
         new("Squad XP", "Squad XP", SkillXp.Rows),
+        new("Blocked music", "Blocked music", ["Skip music", "Block this music", "Clear blocked music"]),
     ];
 
     /// <summary>

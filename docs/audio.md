@@ -511,8 +511,8 @@ host running without sound.
 
 ### Skip and blocked music
 
-Meitou's own (the game has neither): four rows at the end of the Advanced page (`GamePages.AddMusicRows`), so a piece the player dislikes
-need not keep them from leaving the music on. A biome's music is three layers playing at once, each a random pick of one piece or a
+Meitou's own (the game has neither): the Blocked music switch at the end of the Advanced page, with the three buttons folded under it
+(`GamePages.AddMusicRows`, `FeatureGrouping`), so a piece the player dislikes need not keep them from leaving the music on. A biome's music is three layers playing at once, each a random pick of one piece or a
 silence per play ([wwise-bnk.md Music](formats/wwise-bnk.md#music)), so "the music playing now" is up to three segments.
 - **Skip music** (`MusicDirector.Skip`): posts the biome's own `Music_<Name>_Stop` (6 s fade), then `_Play` at once, so every layer picks
   anew, and restarts the timer's interval. One play can pick a silence on every layer, so `_Play` is posted again each second, up to 8

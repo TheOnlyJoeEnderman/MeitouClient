@@ -4860,8 +4860,8 @@ msgid "Blocked music"
 msgstr "ブロックした音楽"
 
 #. machine-translated
-msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
-msgstr "「この音楽をブロック」でブロックした音楽は選ばれず、代わりに別の曲が流れます。ゲームではどの曲も流れます。"
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. Open it to skip or block the music playing now. In the game every piece can play."
+msgstr "「この音楽をブロック」でブロックした音楽は選ばれず、代わりに別の曲が流れます。開くと、今流れている音楽をスキップまたはブロックできます。ゲームではどの曲も流れます。"
 
 #. machine-translated
 msgid "Skip music"

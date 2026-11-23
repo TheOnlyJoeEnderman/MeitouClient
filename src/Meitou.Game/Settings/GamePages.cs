@@ -736,21 +736,23 @@ sealed class GamePages(SettingsMenu menu)
     }
 
     /// <summary>
-    /// The music rows: the Blocked music switch and the Skip, Block and Clear buttons (docs/audio.md "Skip and blocked music").
+    /// The music rows: the Blocked music switch with the Skip, Block and Clear buttons folded under it (<see cref="FeatureGrouping.FeatureGroups"/>;
+    /// docs/audio.md "Skip and blocked music").
     /// </summary>
     void AddMusicRows(List<SettingsMenu.Entry> result)
     {
         result.Add(new("Blocked music",
-            "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play.",
+            "Music you blocked with Block this music is never picked; another piece plays in its place. "
+            + "Open it to skip or block the music playing now. In the game every piece can play.",
             Toggle: new("Blocked music", () => menu.Config.BlockMusic,
-                v => { menu.Config.BlockMusic = v; menu.BlockedMusicChanged?.Invoke(); }, Remaster: true, OnOff: true)));
+                v => { menu.Config.BlockMusic = v; menu.BlockedMusicChanged?.Invoke(); }, Remaster: true, OnOff: true), Raw: "Blocked music"));
         result.Add(new("Skip music", "Fades out the music playing now and starts new music at once.", Run: () => menu.SkipMusic?.Invoke(),
-            RunLabel: "Skip"));
+            Raw: "Skip music", RunLabel: "Skip"));
         result.Add(new("Block this music",
             "Blocks the music playing now and skips to new music. A region's music plays up to three pieces at once; all of them are blocked.",
-            Run: () => menu.BlockPlayingMusic?.Invoke(), RunLabel: "Block"));
+            Run: () => menu.BlockPlayingMusic?.Invoke(), Raw: "Block this music", RunLabel: "Block"));
         result.Add(new("Clear blocked music", "Every piece you blocked can play again.", Run: () => menu.ClearBlockedMusic?.Invoke(),
-            RunLabel: "Clear"));
+            Raw: "Clear blocked music", RunLabel: "Clear"));
     }
 
     /// <summary>

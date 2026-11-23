@@ -625,11 +625,11 @@ msgstr ""
 msgid "Blend more ACES into the hybrid tone mapping curve."
 msgstr ""
 
-#: src/Meitou.Game/Settings/GamePages.cs
+#: src/Meitou.Game/Settings/FeatureGrouping.cs src/Meitou.Game/Settings/GamePages.cs
 msgid "Block this music"
 msgstr ""
 
-#: src/Meitou.Game/Settings/GamePages.cs
+#: src/Meitou.Game/Settings/FeatureGrouping.cs src/Meitou.Game/Settings/GamePages.cs
 msgid "Blocked music"
 msgstr ""
 
@@ -945,7 +945,7 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: src/Meitou.Game/Settings/GamePages.cs
+#: src/Meitou.Game/Settings/FeatureGrouping.cs src/Meitou.Game/Settings/GamePages.cs
 msgid "Clear blocked music"
 msgstr ""
 
@@ -3091,7 +3091,7 @@ msgid "Music frequency"
 msgstr ""
 
 #: src/Meitou.Game/Settings/GamePages.cs
-msgid "Music you blocked with Block this music is never picked; another piece plays in its place. In the game every piece can play."
+msgid "Music you blocked with Block this music is never picked; another piece plays in its place. Open it to skip or block the music playing now. In the game every piece can play."
 msgstr ""
 
 #: launcher/Meitou.Launcher/GraphicsPage.cs src/Meitou.Game/Settings/PresetNamingDialog.cs
@@ -4401,7 +4401,7 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: src/Meitou.Game/Settings/GamePages.cs
+#: src/Meitou.Game/Settings/FeatureGrouping.cs src/Meitou.Game/Settings/GamePages.cs
 msgid "Skip music"
 msgstr ""
 
